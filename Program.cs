@@ -1,4 +1,5 @@
-﻿using CollectivoCoffeeProj.Model;
+﻿using System.Security.Cryptography.X509Certificates;
+using CollectivoCoffeeProj.Model;
 
 namespace CollectivoCoffeeProj
 {
@@ -228,6 +229,16 @@ namespace CollectivoCoffeeProj
             Store SelectedStore = new Store(StoreName);
 
 
+        }
+
+       
+        public void PrintReceipt()
+        {
+            Console.WriteLine("Receipt:");
+            Console.WriteLine("Store: " );
+            Console.WriteLine("Employee: " );
+            Console.WriteLine("Product: ");
+            
         }
     }
 }

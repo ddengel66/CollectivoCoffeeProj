@@ -37,10 +37,21 @@ namespace CollectivoCoffeeProj.Model
                 EmployeesList.Add(new Employee("Pepper"));
             }
 
+            
+
+            //Random ran = new Random();
+            //int randomIndex = ran.Next(0, EmployeesList.Count);
+            //SelectedEmployee = EmployeesList[randomIndex];
+
+        }
+
+        public Employee GetSelectedEmployee()
+        {
             Random ran = new Random();
+
             int randomIndex = ran.Next(0, EmployeesList.Count);
             SelectedEmployee = EmployeesList[randomIndex];
-
+            return SelectedEmployee;
         }
     }
 }
