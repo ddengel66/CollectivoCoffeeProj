@@ -6,9 +6,9 @@ namespace CollectivoCoffeeProj.Model
 
         public string EmpName { get; set; }
 
-        public Employee()
+        public Employee(string EmpName)
 		{
-
+			this.EmpName = EmpName;
 		}
 
 	}

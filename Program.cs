@@ -8,8 +8,9 @@ namespace CollectivoCoffeeProj
         private static List<Appointment> appointments;
         private static List<CutomerAppointment> customerAppointments;
         private static Customer authenticatedCustomer;
-
         private static Customer customer;
+        //private static bool done = false;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Initializing...");
@@ -61,10 +62,11 @@ namespace CollectivoCoffeeProj
         static void Menu()
         {
             bool done = false;
+            //done = false;
 
             while (!done)
             {
-                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Appointments: 4 --- Clear Screen: c --- Quit: q ---");
+                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Appointments: 4 --- Order: 5 --- Clear Screen: c --- Quit: q ---");
                 Console.Write("Choice: ");
                 string choice = Console.ReadLine();
                 switch (choice)
@@ -80,6 +82,11 @@ namespace CollectivoCoffeeProj
                         break;
                     case "4":
                         GetCurrentAppointmentsMenu();
+                        break;
+
+                    //new case with new order method
+                    case "5":
+                        ChooseStore();
                         break;
                     case "c":
                         Console.Clear();
@@ -175,6 +182,52 @@ namespace CollectivoCoffeeProj
                     Console.WriteLine(appointmnet.appointment.date);
                 }
             }
+
+        }
+
+        static void ChooseStore()
+        {
+            if(authenticatedCustomer == null)
+            {
+                Console.WriteLine("You must login to order");
+                return;
+            }
+
+      
+            
+            Console.WriteLine("Options: Milwaukee: 1 --- Chicago: 2 --- Naperville: 3 --- Go Back to Menu: q ---");
+            Console.WriteLine("Select Store");
+            string storeChoice = Console.ReadLine();
+
+            string StoreName = " ";
+
+            switch(storeChoice)
+            {
+                case "1":
+                    StoreName = "Milwaukee";
+                    break;
+
+                case "2":
+                    StoreName = "Chicago";
+                    break;
+
+                case "3":
+                    StoreName = "Naperville";
+                    break;
+
+                case "q":
+                    Menu();
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid command!");
+                    break;
+                
+            }
+
+            Store SelectedStore = new Store(StoreName);
+
+
         }
     }
 }

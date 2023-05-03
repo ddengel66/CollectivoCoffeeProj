@@ -3,7 +3,10 @@ namespace CollectivoCoffeeProj.Model
 {
 	public class Product
 	{
-		public Product()
+
+        public string Name { get; set; }
+
+        public Product()
 		{
 		}
 	}
