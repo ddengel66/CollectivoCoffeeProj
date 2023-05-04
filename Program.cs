@@ -188,21 +188,21 @@ namespace CollectivoCoffeeProj
 
         static void ChooseStore()
         {
-            if(authenticatedCustomer == null)
+            if (authenticatedCustomer == null)
             {
                 Console.WriteLine("You must login to order");
                 return;
             }
 
-      
-            
+
+
             Console.WriteLine("Options: Milwaukee: 1 --- Chicago: 2 --- Naperville: 3 --- Go Back to Menu: q ---");
             Console.WriteLine("Select Store");
             string storeChoice = Console.ReadLine();
 
             string StoreName = " ";
 
-            switch(storeChoice)
+            switch (storeChoice)
             {
                 case "1":
                     StoreName = "Milwaukee";
@@ -223,22 +223,144 @@ namespace CollectivoCoffeeProj
                 default:
                     Console.WriteLine("Invalid command!");
                     break;
-                
+
             }
 
             Store SelectedStore = new Store(StoreName);
 
 
         }
-
-       
-        public void PrintReceipt()
+        static void ChooseProducts()
         {
-            Console.WriteLine("Receipt:");
-            Console.WriteLine("Store: " );
-            Console.WriteLine("Employee: " );
-            Console.WriteLine("Product: ");
-            
+
+            Console.WriteLine("Drink Options: Coffee: 1 --- Water: 2 --- Tea: 3 --- ");
+            Console.WriteLine("Food Options: Muffin: a --- Bagel: b --- Croissant: c --- Go Back to Menu: q ---");
+            Console.WriteLine("Select Desired Items from Menu");
+            string ProductChoice = Console.ReadLine();
+            string ProductName = " ";
+            switch (ProductChoice)
+            {
+                case "1":
+                    ProductName = "Coffee";
+                    break;
+
+                case "2":
+                    ProductName = "Water";
+                    break;
+
+                case "3":
+                    ProductName = "Teas";
+                    break;
+
+                case "a":
+                    ProductName = "Muffin";
+                    break;
+
+                case "b":
+                    ProductName = "Bagel";
+                    break;
+
+                case "c":
+                    ProductName = "Croissant";
+                    break;
+
+                case "q":
+                    Menu();
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice!");
+                    break;
+
+            }
+            static void ChooseProducts(StoreName storeName)
+            {
+                // Get the store location and employee
+               // Store SelectedStore = new Store(); needs to be written in with the store selection and employee randomization along with the 
+               //next two lines 
+                /*string StoreName = SelectedStore.GetName();
+                Employee SelectedEmployee = SelectedStore.GetSelectedEmployee();*/
+
+                // Display the menu options
+                Console.WriteLine("Drink Options: Coffee: 1 --- Water: 2 --- Tea: 3 --- ");
+                Console.WriteLine("Food Options: Muffin: a --- Bagel: b --- Croissant: c --- Go Back to Menu: q ---");
+                Console.WriteLine("Select Desired Items from Menu");
+
+                // Prompt the user for their selection
+                string ProductChoice = "";
+                while (ProductChoice != "1" && ProductChoice != "2" && ProductChoice != "3" &&
+                       ProductChoice != "a" && ProductChoice != "b" && ProductChoice != "c" &&
+                       ProductChoice != "q")
+                {
+                    Console.Write("Enter your choice: ");
+                    ProductChoice = Console.ReadLine();
+                }
+
+                // Process the user's selection
+                string ProductName = "";
+                switch (ProductChoice)
+                {
+                    case "1":
+                        ProductName = "Coffee";
+                        break;
+
+                    case "2":
+                        ProductName = "Water";
+                        break;
+
+                    case "3":
+                        ProductName = "Tea";
+                        break;
+
+                    case "a":
+                        ProductName = "Muffin";
+                        break;
+
+                    case "b":
+                        ProductName = "Bagel";
+                        break;
+
+                    case "c":
+                        ProductName = "Croissant";
+                        break;
+
+                    case "q":
+                        Menu();
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice!");
+                        break;
+                }
+
+                // Print the receipt
+                Console.WriteLine("RECEIPT");
+                Console.WriteLine("--------");
+                Console.WriteLine($"Store: {storeName}"); //
+               // Console.WriteLine($"Employee: {SelectedEmployee.GetName()}"); //the employee selection needs to be fixed for this line
+                Console.WriteLine($"Product: {ProductName}");
+                Console.WriteLine("--------");
+
+                // Wait for user input before returning to the menu
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+
+                // Return to the menu
+                Menu();
+            }
+
+
+
+
+
+            static void PrintReceipt()
+            {
+                Console.WriteLine("Receipt:");
+                Console.WriteLine("Store: ");
+                Console.WriteLine("Employee: ");
+                Console.WriteLine("Product: ");
+
+            }
         }
     }
 }
