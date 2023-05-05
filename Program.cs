@@ -10,7 +10,9 @@ namespace CollectivoCoffeeProj
         private static List<CutomerAppointment> customerAppointments;
         private static Customer authenticatedCustomer;
         private static Customer customer;
-        //private static bool done = false;
+        static Store store;
+
+        private static List<Store> stores;
 
         static void Main(string[] args)
         {
@@ -21,13 +23,21 @@ namespace CollectivoCoffeeProj
 
         static void Initialize()
         {
+
             var c1 = new Customer
+            {
+                FirstName = "a",
+                LastName = "b",
+                Username = "a",
+                Password = "b"
+            };
+            /*var c1 = new Customer
             {
                 FirstName = "Kambiz",
                 LastName = "Saffari",
                 Username = "kambiz",
                 Password = "1234"
-            };
+            };*/
             var c2 = new Customer
             {
                 FirstName = "Terence",
@@ -57,9 +67,34 @@ namespace CollectivoCoffeeProj
             customerAppointments.Add(ca2);
             customerAppointments.Add(ca3);
 
+            var emp1 = new Employee("Klemens");
+            var emp2 = new Employee("Garrix");
+            var emp3 = new Employee("Kaitlyn");
+            var emp4 = new Employee("Annie");
+            var emp5 = new Employee("Dawson");
+            var emp6 = new Employee("Pepper");
+
+
+            var store1 = new Store("Milwaukee");
+            var store2 = new Store("Chicago");
+            var store3 = new Store("Naperville");
+
+            store1.EmployeesList.Add(emp1);
+            store1.EmployeesList.Add(emp2);
+
+            store2.EmployeesList.Add(emp3);
+            store2.EmployeesList.Add(emp4);
+
+            store3.EmployeesList.Add(emp5);
+            store3.EmployeesList.Add(emp6);
+
+            stores = new List<Store>();
+
+            stores.Add(store1);
+            stores.Add(store2);
+            stores.Add(store3);
 
         }
-
         static void Menu()
         {
             bool done = false;
@@ -129,11 +164,14 @@ namespace CollectivoCoffeeProj
             }
         }
 
+
+
         static void LogoutMenu()
         {
             authenticatedCustomer = null;
             Console.WriteLine("Logged out!");
         }
+
 
         static void SignUpMenu()
         {
@@ -161,6 +199,7 @@ namespace CollectivoCoffeeProj
         }
 
 
+
         static void GetCurrentAppointmentsMenu()
         {
             if (authenticatedCustomer == null)
@@ -186,6 +225,7 @@ namespace CollectivoCoffeeProj
 
         }
 
+
         static void ChooseStore()
         {
             if (authenticatedCustomer == null)
@@ -195,25 +235,38 @@ namespace CollectivoCoffeeProj
             }
 
 
-
             Console.WriteLine("Options: Milwaukee: 1 --- Chicago: 2 --- Naperville: 3 --- Go Back to Menu: q ---");
             Console.WriteLine("Select Store");
             string storeChoice = Console.ReadLine();
 
-            string StoreName = " ";
+            //string StoreName = " ";
 
             switch (storeChoice)
             {
                 case "1":
-                    StoreName = "Milwaukee";
+                    //StoreName = "Milwaukee";
+
+                    store = stores[0];
+                    Employee selectedEmployee = store.GetSelectedEmployee();
+                    Console.WriteLine("Selected employee: " + selectedEmployee.EmpName);
+                    ChooseProducts(selectedEmployee,store);
+
+
                     break;
 
                 case "2":
-                    StoreName = "Chicago";
+                    //StoreName = "Chicago";
+                    store = stores[1];
+                    selectedEmployee = store.GetSelectedEmployee();
+                    Console.WriteLine("Selected employee: " + selectedEmployee.EmpName);
                     break;
 
                 case "3":
-                    StoreName = "Naperville";
+                    //StoreName = "Naperville";
+                    store = stores[2];
+                    selectedEmployee = store.GetSelectedEmployee();
+                    Console.WriteLine("Selected employee: " + selectedEmployee.EmpName);
+
                     break;
 
                 case "q":
@@ -226,11 +279,11 @@ namespace CollectivoCoffeeProj
 
             }
 
-            Store SelectedStore = new Store(StoreName);
-
 
         }
-        static void ChooseProducts()
+
+
+        /*static void ChooseProducts(Employee selectedEmployee,Store store)
         {
 
             Console.WriteLine("Drink Options: Coffee: 1 --- Water: 2 --- Tea: 3 --- ");
@@ -272,12 +325,12 @@ namespace CollectivoCoffeeProj
                     Console.WriteLine("Invalid choice!");
                     break;
 
-            }
-            static void ChooseProducts(StoreName storeName)
+            }*/
+            static void ChooseProducts(Employee selectedEmployee, Store store)
             {
                 // Get the store location and employee
-               // Store SelectedStore = new Store(); needs to be written in with the store selection and employee randomization along with the 
-               //next two lines 
+                // Store SelectedStore = new Store(); needs to be written in with the store selection and employee randomization along with the 
+                //next two lines 
                 /*string StoreName = SelectedStore.GetName();
                 Employee SelectedEmployee = SelectedStore.GetSelectedEmployee();*/
 
@@ -336,8 +389,8 @@ namespace CollectivoCoffeeProj
                 // Print the receipt
                 Console.WriteLine("RECEIPT");
                 Console.WriteLine("--------");
-                Console.WriteLine($"Store: {storeName}"); //
-               // Console.WriteLine($"Employee: {SelectedEmployee.GetName()}"); //the employee selection needs to be fixed for this line
+                Console.WriteLine($"Store: {store.StoreName}"); //
+                Console.WriteLine("Prepared by: " + selectedEmployee.EmpName);                                          // Console.WriteLine($"Employee: {SelectedEmployee.GetName()}"); //the employee selection needs to be fixed for this line
                 Console.WriteLine($"Product: {ProductName}");
                 Console.WriteLine("--------");
 
@@ -351,16 +404,19 @@ namespace CollectivoCoffeeProj
 
 
 
-
-
-            static void PrintReceipt()
-            {
-                Console.WriteLine("Receipt:");
-                Console.WriteLine("Store: ");
-                Console.WriteLine("Employee: ");
-                Console.WriteLine("Product: ");
-
-            }
         }
+
+
+
+
+
+
+        /*public void PrintReceipt()
+        {
+            Console.WriteLine("Receipt: ");
+            Console.WriteLine("Store: ");
+            Console.WriteLine("Employee: ");
+            Console.WriteLine("Product: ");
+
+        }*/
     }
-}

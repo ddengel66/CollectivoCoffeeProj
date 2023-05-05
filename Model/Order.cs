@@ -6,6 +6,7 @@ namespace CollectivoCoffeeProj.Model
 
 		public Order()
 		{
+
 		}
 	}
 }
