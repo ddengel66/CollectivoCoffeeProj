@@ -259,6 +259,7 @@ namespace CollectivoCoffeeProj
                     store = stores[1];
                     selectedEmployee = store.GetSelectedEmployee();
                     Console.WriteLine("Selected employee: " + selectedEmployee.EmpName);
+                    ChooseProducts(selectedEmployee, store);
                     break;
 
                 case "3":
@@ -266,6 +267,7 @@ namespace CollectivoCoffeeProj
                     store = stores[2];
                     selectedEmployee = store.GetSelectedEmployee();
                     Console.WriteLine("Selected employee: " + selectedEmployee.EmpName);
+                    ChooseProducts(selectedEmployee, store);
 
                     break;
 
@@ -339,6 +341,7 @@ namespace CollectivoCoffeeProj
                 Console.WriteLine("Food Options: Muffin: a --- Bagel: b --- Croissant: c --- Go Back to Menu: q ---");
                 Console.WriteLine("Select Desired Items from Menu");
 
+                
                 // Prompt the user for their selection
                 string ProductChoice = "";
                 while (ProductChoice != "1" && ProductChoice != "2" && ProductChoice != "3" &&
@@ -390,7 +393,7 @@ namespace CollectivoCoffeeProj
                 Console.WriteLine("RECEIPT");
                 Console.WriteLine("--------");
                 Console.WriteLine($"Store: {store.StoreName}"); //
-                Console.WriteLine("Prepared by: " + selectedEmployee.EmpName);                                          // Console.WriteLine($"Employee: {SelectedEmployee.GetName()}"); //the employee selection needs to be fixed for this line
+                Console.WriteLine("Prepared by: " + selectedEmployee.EmpName);        // Console.WriteLine($"Employee: {SelectedEmployee.GetName()}"); //the employee selection needs to be fixed for this line
                 Console.WriteLine($"Product: {ProductName}");
                 Console.WriteLine("--------");
 
